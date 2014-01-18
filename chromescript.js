@@ -194,4 +194,4 @@ function runCode(code) {
 	chrome.tabs.executeScript({
 		code: parseCode(code)
 	});
-};
+}
