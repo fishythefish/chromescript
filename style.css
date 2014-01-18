@@ -2,8 +2,17 @@ body {
 	min-width: 357px;
 	overflow-x: hidden;
 }
-.save {
-	background: url('icon/floppy-disc.png');
-background-position:center;
-background-repeat:no-repeat;
+#save{
+    background-image:url('icon/floppy-discv2.png');
 }
+#load{
+    background-image:url('icon/folderv2.png');
+}
+.files{
+    background-position:center;
+    background-repeat:no-repeat;
+    width: 24px;
+    height: 24px;
+    outline: 1;
+}
+
