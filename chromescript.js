@@ -5,6 +5,11 @@ var SUFFIX_REGEX = /\.cjs$/;
 
 window.onload = function() {
 
+	setCurrentFile(TEMP).then(function() {});
+	chrome.storage.local.get(TEMP, function(items) {
+		alert(items[TEMP]);
+		codeBox.setValue(items[TEMP]);
+	});
 	var isSaved = true;
 
     document.editor = CodeMirror.fromTextArea(scriptingspace, {
@@ -23,7 +28,8 @@ window.onload = function() {
 		openFile(this.children[index].value);
 	});
 
-    codeBox.on(codeBox.change, textChanged);
+    codeBox.on("change", textChanged);
+    codeBox.on("blur", codeBlur);
 
 	populateFiles().then(function() {});
 
@@ -41,6 +47,18 @@ window.onload = function() {
 
 	function textChanged() {
 		isSaved = false;
+	}
+
+	function codeBlur() {
+		getCurrentFile().then(function(file) {
+			if (file.valueOf() === TEMP.valueOf()) {
+				var item = {};
+				item[TEMP] = codeBox.getValue();
+				chome.storage.local.set(item, function() {
+					isSaved = true;
+				});
+			}
+		});
 	}
 
 	function newFile() {
