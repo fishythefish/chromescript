@@ -3612,7 +3612,8 @@ window.CodeMirror = (function() {
         cm.indentLine(cm.getCursor().line, null, true);
       })();
     },
-    toggleOverwrite: function(cm) {cm.toggleOverwrite();}
+    toggleOverwrite: function(cm) {cm.toggleOverwrite();},
+    run: function(cm) {runCode(cm.getValue())} 
   };
 
   // STANDARD KEYMAPS
@@ -3623,7 +3624,7 @@ window.CodeMirror = (function() {
     "End": "goLineEnd", "Home": "goLineStartSmart", "PageUp": "goPageUp", "PageDown": "goPageDown",
     "Delete": "delCharAfter", "Backspace": "delCharBefore", "Shift-Backspace": "delCharBefore",
     "Tab": "defaultTab", "Shift-Tab": "indentAuto",
-    "Enter": "newlineAndIndent", "Insert": "toggleOverwrite"
+    "Enter": "newlineAndIndent", "Insert": "toggleOverwrite", "Shift-Enter": "run"
   };
   // Note that the save and find-related commands aren't defined by
   // default. Unknown commands are simply ignored.
