@@ -4,8 +4,7 @@ window.onload = function() {
 
 	runButton.onclick = function() {
 		chrome.tabs.executeScript({
-			//code: codeBox.value
-			code: 'alert("Hello")'
+			code: codeBox.value
 		});
 	};
 };
