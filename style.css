@@ -2,17 +2,24 @@ body {
 	min-width: 357px;
 	overflow-x: hidden;
 }
-#editor{
-    height: 400px;
-}
 #loader{
     display: inline;
     position: relative;
     float: left;
+    height: 181;
+}
+
+textarea{
+    height: 175px;
+}
+
+#scriptingspace{
+    height: 175px;
 }
 
 #textbox{
     display: inline;
     float: left;
     position: relative;
+    height: 175px;
 }
