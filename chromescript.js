@@ -15,14 +15,15 @@ window.onload = function() {
 
 
 	var filePicker = document.getElementById("FilePicker");
-	var codeBox = document.getElementById("scriptingspace");
+	var codeBox = document.editor;
 	var fileLabel = document.getElementById("filename");
 
 	filePicker.addEventListener('dblclick', function() {
 		var index = this.selectedIndex;
 		openFile(this.children[index].value);
 	});
-	codeBox.addEventListener('input', textChanged);
+
+    codeBox.on(codeBox.change, textChanged);
 
 	populateFiles(function() {
 		var newButton = document.getElementById("new");
@@ -47,7 +48,7 @@ window.onload = function() {
 	function newFile() {
 		if (closeFile()) {
 			setCurrentFile(TEMP, function() {
-				codeBox.value = "";
+				codeBox.setValue("");
 				isSaved = true;
 			});
 		}
@@ -57,7 +58,7 @@ window.onload = function() {
 		getCurrentFile(function(file) {
 			if (file.valueOf() === TEMP.valueOf() || file === undefined) return saveAs();
 			var item = {};
-			item[file] = codeBox.value;
+			item[file] = codeBox.getValue();
 			chrome.storage.local.set(item, function() {
 				isSaved = true;
 			});
@@ -72,7 +73,7 @@ window.onload = function() {
 			if (items[name] === undefined || confirm("Script already exists. Overwrite?")) {
 				setCurrentFile(name, function() {
 					var item = {};
-					item[name] = codeBox.value;
+					item[name] = codeBox.getValue();
 					chrome.storage.local.set(item, function() {
 						populateFiles(function() {
 							isSaved = true;
@@ -89,7 +90,7 @@ window.onload = function() {
 
 	function deleteFile() {
 		getCurrentFile(function(file) {
-			if (codeBox.value.length === 0 && file.valueOf() === TEMP.valueOf()) return;
+			if (codeBox.getValue().length === 0 && file.valueOf() === TEMP.valueOf()) return;
 			var sure = confirm("Are you sure you want to delete this script?");
 			if (sure) {
 				isSaved = true;
@@ -104,7 +105,7 @@ window.onload = function() {
 
 	function run() {
 		chrome.tabs.executeScript({
-			code: codeBox.value
+			code: codeBox.getValue()
 		});
 	}
 
@@ -163,7 +164,7 @@ window.onload = function() {
 		if (closeFile()) {
 			setCurrentFile(file, function() {
 				chrome.storage.local.get(file, function(items) {
-					codeBox.value = items[file];
+					codeBox.setvalue(items[file]);
 					isSaved = true;
 				});
 			});
