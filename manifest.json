@@ -11,16 +11,16 @@
 		"128": "icon/icon128.png"
 	},
 	"browser-action": {
-		"default_icon": "",
+		"default_icon": {
+			"19": "icon/icon19.png",
+			"38": "icon/icon38.png"
+		},
 		"default_title": "ChromeScript",
 		"default_popup": "chromescript.html"
 	},
 	"author": "Mayank Patke",
 	"background": {
-		"default_icon": {
-			"19": "icon/icon19.png",
-			"38": "icon/icon38.png"
-		}
+
 	},
 	"incognito": "split",
 	"offline_enabled": "true",
