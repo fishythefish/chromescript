@@ -13,7 +13,7 @@
 		"128": "icon/icon128.png"
 	},
 
-	"devtools_page": "chromescript.html",
+	"devtools_page": "devtools.html",
 
 	"browser_action": {
 		"default_icon": {
@@ -23,19 +23,6 @@
 		"default_title": "ChromeScript",
 		"default_popup": "chromescript.html"
 	},
-
-	"content_scripts": [
-		{
-			"matches": ["<all_urls>"],
-			"css": [
-				"CodeMirror/lib/codemirror.css"
-			],
-			"js": [
-				"CodeMirror/mode/javascript/javascript.js",
-				"CodeMirror/lib/codemirror.js"
-            ]
-		}
-	],
 
 	"incognito": "split",
 	"offline_enabled": true,
