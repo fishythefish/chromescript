@@ -1,13 +1,22 @@
 body {
-	min-width: 357px;
-    width: 750px;
+    width: 700px;
 	overflow-x: hidden;
+}
+#run{
+    float: right;
 }
 
 #loader{
+    width: 150px;
+    height: 175px;
     display: inline-block;
     position: relative;
     float: left;
+}
+
+select {
+    width: 150px;
+    height: 168px;
 }
 
 #textbox{
