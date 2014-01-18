@@ -122,8 +122,8 @@ window.onload = function() {
 					addFile(key);
 				}
 			}
+			callback();
 		});
-		callback();
 	}
 
 	function closeFile() {
@@ -137,9 +137,10 @@ window.onload = function() {
 		});
 		if (currentFile === undefined) {
 			currentFile = TEMP;
-			setCurrentFile(currentFile, function() {});
+			setCurrentFile(currentFile, function() {
+				callback(currentFile);
+			});
 		}
-		callback(currentFile);
 	}
 
 	function setCurrentFile(file, callback) {
@@ -147,8 +148,8 @@ window.onload = function() {
 		obj[CURRENT] = file;
 		chrome.storage.local.set(obj, function() {
 			fileLabel.innerHTML = file;
+			callback();
 		});
-		callback();
 	}
 
 	function openFile(file) {
