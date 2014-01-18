@@ -25,21 +25,21 @@ window.onload = function() {
 
     codeBox.on(codeBox.change, textChanged);
 
-	populateFiles(function() {
-		var newButton = document.getElementById("new");
-		var saveButton = document.getElementById("save");
-		var saveAsButton = document.getElementById("saveas");
-		var importButton = document.getElementById("import");
-		var deleteButton = document.getElementById("delete");
-		var runButton = document.getElementById("run");
+	populateFiles();
 
-		newButton.addEventListener('click', newFile);
-		saveButton.addEventListener('click', save);
-		saveAsButton.addEventListener('click', saveAs);
-		importButton.addEventListener('click', importFile);
-		deleteButton.addEventListener('click', deleteFile);
-		runButton.addEventListener('click', run);
-	});
+	var newButton = document.getElementById("new");
+	var saveButton = document.getElementById("save");
+	var saveAsButton = document.getElementById("saveas");
+	var importButton = document.getElementById("import");
+	var deleteButton = document.getElementById("delete");
+	var runButton = document.getElementById("run");
+
+	newButton.addEventListener('click', newFile);
+	saveButton.addEventListener('click', save);
+	saveAsButton.addEventListener('click', saveAs);
+	importButton.addEventListener('click', importFile);
+	deleteButton.addEventListener('click', deleteFile);
+	runButton.addEventListener('click', run);
 
 	function textChanged() {
 		isSaved = false;
@@ -47,10 +47,9 @@ window.onload = function() {
 
 	function newFile() {
 		if (closeFile()) {
-			setCurrentFile(TEMP, function() {
-				codeBox.setValue("");
-				isSaved = true;
-			});
+			setCurrentFile(TEMP);
+			codeBox.setValue("");
+			isSaved = true;
 		}
 	}
 
@@ -71,14 +70,12 @@ window.onload = function() {
 		name += SUFFIX;
 		chrome.storage.local.get(name, function(items) {
 			if (items[name] === undefined || confirm("Script already exists. Overwrite?")) {
-				setCurrentFile(name, function() {
-					var item = {};
-					item[name] = codeBox.getValue();
-					chrome.storage.local.set(item, function() {
-						populateFiles(function() {
-							isSaved = true;
-						});
-					});
+				setCurrentFile(name);
+				var item = {};
+				item[name] = codeBox.getValue();
+				chrome.storage.local.set(item, function() {
+					populateFiles();
+					isSaved = true;
 				});
 			}
 		});
@@ -95,9 +92,8 @@ window.onload = function() {
 			if (sure) {
 				isSaved = true;
 				chrome.storage.local.remove(file, function() {
-					populateFiles(function() {
-						newFile();
-					});
+					populateFiles();
+					newFile();
 				});
 			}
 		});
@@ -122,7 +118,7 @@ window.onload = function() {
 		filePicker.add(option);
 	}
 
-	function populateFiles(callback) {
+	function populateFiles() {
 		clearFiles();
 		chrome.storage.local.get(null, function(items) {
 			for (var key in items) {
@@ -130,7 +126,6 @@ window.onload = function() {
 					addFile(key);
 				}
 			}
-			callback();
 		});
 	}
 
@@ -144,29 +139,26 @@ window.onload = function() {
 			currentFile = items[CURRENT];
 			if (currentFile === undefined) {
 				currentFile = TEMP;
-				setCurrentFile(currentFile, function() {
-					callback(currentFile);
-				});
+				setCurrentFile(currentFile);
 			}
+			callback(currentFile);
 		});
 	}
 
-	function setCurrentFile(file, callback) {
+	function setCurrentFile(file) {
 		var obj = {};
 		obj[CURRENT] = file;
 		chrome.storage.local.set(obj, function() {
 			fileLabel.innerHTML = file;
-			callback();
 		});
 	}
 
 	function openFile(file) {
 		if (closeFile()) {
-			setCurrentFile(file, function() {
-				chrome.storage.local.get(file, function(items) {
-					codeBox.setvalue(items[file]);
-					isSaved = true;
-				});
+			setCurrentFile(file);
+			chrome.storage.local.get(file, function(items) {
+				codeBox.setvalue(items[file]);
+				isSaved = true;
 			});
 		}
 	}
