@@ -15,8 +15,8 @@ window.onload = function() {
         mode: "text/javascript",
         lineNumbers: true,
         lineWrapping: true,
-    });
 
+    });
 
 	var filePicker = document.getElementById("FilePicker");
 	var codeBox = document.editor;
@@ -115,9 +115,7 @@ window.onload = function() {
 	}
 
 	function run() {
-		chrome.tabs.executeScript({
-			code: parseCode(codeBox.getValue())
-		});
+		runCode(codeBox.getValue());
 	}
 
 	function clearFiles() {
@@ -199,4 +197,10 @@ window.onload = function() {
         }
     };
 
+};
+
+function runCode(code) {
+	chrome.tabs.executeScript({
+		code: parseCode(code)
+	});
 };
