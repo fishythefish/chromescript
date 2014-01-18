@@ -15,6 +15,11 @@
 
 	"devtools_page": "devtools.html",
 
+	"background": {
+		"persistent": false,
+		"scripts": ["background.js"]
+	},
+
 	"browser_action": {
 		"default_icon": {
 			"19": "icon/icon19.png",

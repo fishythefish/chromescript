@@ -1,0 +1,12 @@
+chrome.runtime.onConnect.addListener(function(devToolsConnection) {
+	var devToolsListener = function(message, sender, sendResponse) {
+		chrome.tabs.executeScript(message.tabId,
+		{
+			code: message.codeToInject
+		});
+	};
+	devToolsConnection.onMessage.addListener(devToolsListener);
+	devToolsConnection.onDisconnect(function() {
+		devToolsConnection.onMessage.removeListener(devToolsListener);
+	});
+});
