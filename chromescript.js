@@ -1,5 +1,10 @@
-document.getElementById("submit").onclick(function() {
-	chrome.tabs.executeScript({
-		code: document.getElementById("scriptingspace").value()
-	});
-});
+window.onload = function() {
+	var codeBox = document.getElementById("scriptingspace");
+	var runButton = document.getElementById("submit");
+
+	runButton.onclick = function() {
+		chrome.tabs.executeScript({
+			code: codeBox.value
+		});
+	};
+};
