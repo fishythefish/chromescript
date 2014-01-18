@@ -27,6 +27,7 @@ window.onload = function() {
 		openFile(this.children[index].value);
 	});
 
+	codeBox.focus();
     codeBox.on("change", textChanged);
     codeBox.on("blur", codeBlur);
 
