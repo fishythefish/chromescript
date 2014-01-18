@@ -1,13 +1,18 @@
+const CURRENT = "currentFile";
+const TEMP = "New File";
+
 window.onload = function() {
 
-	if (getCurrentFile() === undefined) {
-		setCurrentFile("tempChromeScript");
-	}
 	var isSaved = true;
 
 	var filePicker = document.getElementById("FilePicker");
 	var codeBox = document.getElementById("scriptingspace");
+	var fileLabel = document.getElementById("filename");
 
+	filePicker.addEventListener('dblclick', function() {
+		var index = this.selectedIndex;
+		openFile(this.children[index].value);
+	});
 	codeBox.addEventListener('input', textChanged);
 
 	populateFiles();
@@ -32,14 +37,15 @@ window.onload = function() {
 
 	function newFile() {
 		if (closeFile()) {
-			setCurrentFile("tempChromeScript");
+			setCurrentFile(TEMP);
 			codeBox.value = "";
+			isSaved = true;
 		}
 	}
 
 	function save() {
 		var file = getCurrentFile();
-		if (file === "tempChromeScript" || file === undefined) return saveAs();
+		if (file.valueOf() === TEMP.valueOf() || file === undefined) return saveAs();
 		var item = {};
 		item[file] = codeBox.value;
 		chrome.storage.local.set(item);
@@ -65,10 +71,13 @@ window.onload = function() {
 	}
 
 	function deleteFile() {
+		if (codeBox.value.length === 0 && getCurrentFile().valueOf() === TEMP.valueOf()) return;
 		var sure = confirm("Are you sure you want to delete this script?");
 		if (sure) {
+			isSaved = true;
 			var file = getCurrentFile();
 			chrome.storage.local.remove(file);
+			populateFiles();
 			newFile();
 		}
 	}
@@ -87,7 +96,8 @@ window.onload = function() {
 
 	function addFile(name) {
 		var option = document.createElement("option");
-		option.text = name;
+		option.value = name;
+		option.text = name.slice(0, -3);
 		filePicker.add(option);
 	}
 
@@ -96,7 +106,7 @@ window.onload = function() {
 		chrome.storage.local.get(null, function(items) {
 			for (var key in items) {
 				if (/\.js$/.test(key)) {
-					addFile(key.slice(0, -3));
+					addFile(key);
 				}
 			}
 		});
@@ -108,16 +118,31 @@ window.onload = function() {
 
 	function getCurrentFile() {
 		var currentFile;
-		chrome.storage.local.get("currentFile", function(items) {
-			currentFile = items["currentFile"];
+		chrome.storage.local.get(CURRENT, function(items) {
+			currentFile = items[CURRENT];
 		});
+		if (currentFile === undefined) {
+			currentFile = TEMP;
+			setCurrentFile(currentFile);
+		}
 		return currentFile;
 	}
 
 	function setCurrentFile(file) {
 		var obj = {};
-		obj["currentFile"] = file;
+		obj[CURRENT] = file;
 		chrome.storage.local.set(obj);
+		fileLabel.innerHTML=file;
+	}
+
+	function openFile(file) {
+		if (closeFile()) {
+			setCurrentFile(file);
+			chrome.storage.local.get(file, function(items) {
+				codeBox.value = items[file];
+			});
+			isSaved = true;
+		}
 	}
 
 };
