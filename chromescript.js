@@ -188,16 +188,6 @@ window.onload = function() {
 		}
 	}
 
-    var map = [];
-    onkeydown = onkeyup = function(e){
-        e = e || event;
-        map[e.keyCode] = e.type == 'keydown';
-        if(map[16] && map[13]){
-            run();
-        }
-    };
-
-};
 
 function runCode(code) {
 	chrome.tabs.executeScript({
