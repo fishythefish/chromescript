@@ -4,10 +4,6 @@
         <title>ChromeScript</title>
         <link rel="stylesheet" type="text/css" href="style.css">
         <script src="chromescript.js"></script>
-        <script src="CodeMirror/lib/codemirror.js"></script>
-        <script src="CodeMirror/mode/javascript/javascript.js"></script>
-        <link href="CodeMirror/lib/codemirror.css" rel="stylesheet" type="text/css" />
-        <link href="CodeMirror/theme/default.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
         <div id="icons">
@@ -27,13 +23,6 @@
             </div>
             <div id="textbox">
                 <textarea id="scriptingspace" cols="65" rows="10"  placeholder="Enter code here"></textarea>
-                <script>
-                    var editor = CodeMirror.fromTextArea(document.getElementById("scriptingspace"), {
-                            lineNumbers: true,
-                            matchBrackets: true,
-                            mode: "javascript"
-                            });
-                </script>
             </div>
         </div>
     </body>
