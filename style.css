@@ -2,3 +2,8 @@ body {
 	min-width: 357px;
 	overflow-x: hidden;
 }
+.save {
+	background: url('icon/floppy-disc.png');
+background-position:center;
+background-repeat:no-repeat;
+}
