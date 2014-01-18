@@ -38,7 +38,6 @@
                 "CodeMirror/addon/tern/tern.css",
                 "CodeMirror/doc/docs.css",
                 "CodeMirror/lib/codemirror.css",
-                "CodeMirror/mode/css",
                 "CodeMirror/mode/css/css.js",
                 "CodeMirror/mode/css/index.html",
                 "CodeMirror/mode/css/less.html",
