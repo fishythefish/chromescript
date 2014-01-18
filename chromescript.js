@@ -31,12 +31,14 @@ window.onload = function() {
 	var saveButton = document.getElementById("save");
 	var saveAsButton = document.getElementById("saveas");
 	var importButton = document.getElementById("import");
+	var deleteButton = document.getElementById("delete");
 	var runButton = document.getElementById("run");
 
 	newButton.addEventListener('click', newFile);
 	saveButton.addEventListener('click', save);
 	saveAsButton.addEventListener('click', saveAs);
 	importButton.addEventListener('click', importFile);
+	deleteButton.addEventListener('click', deleteFile);
 	runButton.addEventListener('click', run);
 
 	function textChanged() {
