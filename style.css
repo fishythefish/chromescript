@@ -1,6 +1,7 @@
 body {
     width: 695px;
 	overflow-x: hidden;
+    background: #e8e7e7;
 }
 
 #filename{
