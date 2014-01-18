@@ -1,5 +1,5 @@
-const CURRENT = "currentFile";
-const TEMP = "New File";
+var CURRENT = "currentFile";
+var TEMP = "New File";
 
 window.onload = function() {
 
@@ -53,7 +53,9 @@ window.onload = function() {
 	}
 
 	function saveAs() {
-		var name = prompt("Save as: ", "Enter script name") + ".js";
+		var name = prompt("Save as: ", "Enter script name");
+		if (name === null) return;
+		name += ".js";
 		chrome.storage.local.get(name, function(items) {
 			if (items[name] === undefined || confirm("Script already exists. Overwrite?")) {
 				setCurrentFile(name);
