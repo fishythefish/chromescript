@@ -24,21 +24,21 @@ window.onload = function() {
 	});
 	codeBox.addEventListener('input', textChanged);
 
-	populateFiles(function() {});
+	populateFiles(function() {
+		var newButton = document.getElementById("new");
+		var saveButton = document.getElementById("save");
+		var saveAsButton = document.getElementById("saveas");
+		var importButton = document.getElementById("import");
+		var deleteButton = document.getElementById("delete");
+		var runButton = document.getElementById("run");
 
-	var newButton = document.getElementById("new");
-	var saveButton = document.getElementById("save");
-	var saveAsButton = document.getElementById("saveas");
-	var importButton = document.getElementById("import");
-	var deleteButton = document.getElementById("delete");
-	var runButton = document.getElementById("run");
-
-	newButton.addEventListener('click', newFile);
-	saveButton.addEventListener('click', save);
-	saveAsButton.addEventListener('click', saveAs);
-	importButton.addEventListener('click', importFile);
-	deleteButton.addEventListener('click', deleteFile);
-	runButton.addEventListener('click', run);
+		newButton.addEventListener('click', newFile);
+		saveButton.addEventListener('click', save);
+		saveAsButton.addEventListener('click', saveAs);
+		importButton.addEventListener('click', importFile);
+		deleteButton.addEventListener('click', deleteFile);
+		runButton.addEventListener('click', run);
+	});
 
 	function textChanged() {
 		isSaved = false;
@@ -89,7 +89,7 @@ window.onload = function() {
 
 	function deleteFile() {
 		getCurrentFile(function(file) {
-			if (codeBox.value.length === 0) return;
+			if (codeBox.value.length === 0 && file.valueOf() === TEMP.valueOf()) return;
 			var sure = confirm("Are you sure you want to delete this script?");
 			if (sure) {
 				isSaved = true;
@@ -141,13 +141,13 @@ window.onload = function() {
 		var currentFile;
 		chrome.storage.local.get(CURRENT, function(items) {
 			currentFile = items[CURRENT];
+			if (currentFile === undefined) {
+				currentFile = TEMP;
+				setCurrentFile(currentFile, function() {
+					callback(currentFile);
+				});
+			}
 		});
-		if (currentFile === undefined) {
-			currentFile = TEMP;
-			setCurrentFile(currentFile, function() {
-				callback(currentFile);
-			});
-		}
 	}
 
 	function setCurrentFile(file, callback) {
