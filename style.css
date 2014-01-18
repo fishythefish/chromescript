@@ -31,5 +31,6 @@ select {
     position: relative;
     float: left;
     height: 175px;
+    border: 1px solid;
 }
 
