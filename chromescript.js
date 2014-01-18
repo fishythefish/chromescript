@@ -188,7 +188,7 @@ window.onload = function() {
 			});
 		}
 	}
-
+};
 
 function runCode(code) {
 	chrome.tabs.executeScript({
