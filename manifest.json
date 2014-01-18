@@ -29,6 +29,7 @@
 		"activeTab",
 		"contentSettings",
 		"contextMenus",
-		"cookies"
+		"cookies",
+		"storage"
 	]
 }
