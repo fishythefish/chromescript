@@ -1,5 +1,7 @@
 var CURRENT = "currentFile";
 var TEMP = "New File";
+var SUFFIX = ".cjs";
+var SUFFIX_REGEX = /\.cjs$/;
 
 window.onload = function() {
 
@@ -55,7 +57,7 @@ window.onload = function() {
 	function saveAs() {
 		var name = prompt("Save as: ", "Enter script name");
 		if (name === null) return;
-		name += ".js";
+		name += SUFFIX;
 		chrome.storage.local.get(name, function(items) {
 			if (items[name] === undefined || confirm("Script already exists. Overwrite?")) {
 				setCurrentFile(name);
@@ -99,7 +101,7 @@ window.onload = function() {
 	function addFile(name) {
 		var option = document.createElement("option");
 		option.value = name;
-		option.text = name.slice(0, -3);
+		option.text = name.slice(0, -SUFFIX.length);
 		filePicker.add(option);
 	}
 
@@ -107,7 +109,7 @@ window.onload = function() {
 		clearFiles();
 		chrome.storage.local.get(null, function(items) {
 			for (var key in items) {
-				if (/\.js$/.test(key)) {
+				if (SUFFIX_REGEX.test(key)) {
 					addFile(key);
 				}
 			}

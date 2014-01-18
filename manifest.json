@@ -22,6 +22,20 @@
 		"default_popup": "chromescript.html"
 	},
 
+	"content_scripts": [
+		{
+			"matches": ["<all_urls>"],
+			"css": [
+				"CodeMirror/.css",
+				"CodeMirror/.css"
+			],
+			"js": [
+				"CodeMirror/.js",
+				"CodeMirror/.js"
+			]
+		}
+	],
+
 	"incognito": "split",
 	"offline_enabled": true,
 
