@@ -43,6 +43,8 @@
 		"contentSettings",
 		"contextMenus",
 		"cookies",
-		"storage"
+		{"fileSystem": ["write", "retainEntries", "directory"]},
+		"storage",
+		"syncFileSystem"
 	]
 }
