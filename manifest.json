@@ -1,14 +1,18 @@
 {
 	"manifest_version": 2,
 
+	"author": "Mayank Patke",
 	"name": "ChromeScript",
 	"description": "This extension makes writing scripts easy.",
 	"version": "0.1",
+	"homepage_url": "https://github.com/Fishythefish/chromescript",
+
 	"icons": {
 		"16": "icon/icon16.png",
 		"48": "icon/icon48.png",
 		"128": "icon/icon128.png"
 	},
+
 	"browser_action": {
 		"default_icon": {
 			"19": "icon/icon19.png",
@@ -17,7 +21,7 @@
 		"default_title": "ChromeScript",
 		"default_popup": "chromescript.html"
 	},
-	"author": "Mayank Patke",
+
 	"background": {
 		"persistent": false,
 		"scripts": [
