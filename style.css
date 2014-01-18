@@ -1,17 +1,16 @@
 body {
-    width: 695px;
 	overflow-x: hidden;
     background: #e8e7e7;
+    margin: 0;
+    padding: 0;
 }
 
 #filename{
     font-family: "Courier New";
-    margin-left: 50px;
     margin-right: auto;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    width: 400px;
     display: inline-block;
 }
 
@@ -20,23 +19,23 @@ body {
     margin-right: 0px;
 }
 
-#loader{
-    width: 193px;
-    height: 175px;
-    display: inline-block;
-    position: relative;
+#editor{
     float: left;
+    width: 100%;
 }
 
-select {
-    width: 193px;
-    height: 172px;
+#loader{
+    position: relative;
+    float: left;
+    height: 100%;
+}
+
+select{
+    position: relative;
+    float: left;
+    width: 200px;
 }
 
 #textbox{
-    display: inline-block;
-    position: relative;
-    float: right;
-    height: 175px;
+    margin-left: 200px;
 }
-
