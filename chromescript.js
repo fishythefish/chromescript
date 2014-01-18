@@ -7,6 +7,13 @@ window.onload = function() {
 
 	var isSaved = true;
 
+    document.editor = CodeMirror.fromTextArea(scriptingspace, {
+        mode: "text/javascript",
+        lineNumbers: true,
+        lineWrapping: true,
+    });
+
+
 	var filePicker = document.getElementById("FilePicker");
 	var codeBox = document.getElementById("scriptingspace");
 	var fileLabel = document.getElementById("filename");
