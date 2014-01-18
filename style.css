@@ -1,25 +1,17 @@
 body {
 	min-width: 357px;
+    width: 750px;
 	overflow-x: hidden;
 }
+
 #loader{
-    display: inline;
+    display: inline-block;
     position: relative;
     float: left;
-    height: 181;
-}
-
-textarea{
-    height: 175px;
-}
-
-#scriptingspace{
-    height: 175px;
 }
 
 #textbox{
-    display: inline;
-    float: left;
+    display: inline-block;
     position: relative;
-    height: 175px;
+    float: left;
 }
