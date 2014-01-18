@@ -26,11 +26,11 @@
 		{
 			"matches": ["<all_urls>"],
 			"css": [
-				"CodeMirror/lib/codemirror.css",
+				"CodeMirror/lib/codemirror.css"
 			],
 			"js": [
 				"CodeMirror/mode/javascript/javascript.js",
-				"CodeMirror/lib/codemirror.js",
+				"CodeMirror/lib/codemirror.js"
             ]
 		}
 	],
