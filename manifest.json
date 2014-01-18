@@ -6,7 +6,11 @@
 	"version": "0.1",
 	"default_locale": "en",
 	"icons": {},
-	"browser-action": {},
+	"browser-action": {
+		"default_icon": "",
+		"default_title": "ChromeScript",
+		"default_popup": "chromescript.html"
+	},
 	"author": "Mayank Patke",
 	"background": {
 
