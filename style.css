@@ -1,5 +1,5 @@
 body {
-    width: 700px;
+    width: 695px;
 	overflow-x: hidden;
 }
 #run{
@@ -22,5 +22,5 @@ select {
 #textbox{
     display: inline-block;
     position: relative;
-    float: left;
+    float: right;
 }
