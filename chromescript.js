@@ -1,5 +1,5 @@
 var CURRENT = "currentFile";
-var TEMP = "New File";
+var TEMP = "New Script";
 var SUFFIX = ".cjs";
 var SUFFIX_REGEX = /\.cjs$/;
 
@@ -17,7 +17,7 @@ window.onload = function() {
 	});
 	codeBox.addEventListener('input', textChanged);
 
-	populateFiles();
+	populateFiles(function() {});
 
 	var newButton = document.getElementById("new");
 	var saveButton = document.getElementById("save");
@@ -39,19 +39,22 @@ window.onload = function() {
 
 	function newFile() {
 		if (closeFile()) {
-			setCurrentFile(TEMP);
-			codeBox.value = "";
-			isSaved = true;
+			setCurrentFile(TEMP, function() {
+				codeBox.value = "";
+				isSaved = true;
+			});
 		}
 	}
 
 	function save() {
-		var file = getCurrentFile();
-		if (file.valueOf() === TEMP.valueOf() || file === undefined) return saveAs();
-		var item = {};
-		item[file] = codeBox.value;
-		chrome.storage.local.set(item);
-		isSaved = true;
+		getCurrentFile(function(file) {
+			if (file.valueOf() === TEMP.valueOf() || file === undefined) return saveAs();
+			var item = {};
+			item[file] = codeBox.value;
+			chrome.storage.local.set(item, function() {
+				isSaved = true;
+			});
+		});
 	}
 
 	function saveAs() {
@@ -60,12 +63,15 @@ window.onload = function() {
 		name += SUFFIX;
 		chrome.storage.local.get(name, function(items) {
 			if (items[name] === undefined || confirm("Script already exists. Overwrite?")) {
-				setCurrentFile(name);
-				var item = {};
-				item[name] = codeBox.value;
-				chrome.storage.local.set(item);
-				populateFiles();
-				isSaved = true;
+				setCurrentFile(name, function() {
+					var item = {};
+					item[name] = codeBox.value;
+					chrome.storage.local.set(item, function() {
+						populateFiles(function() {
+							isSaved = true;
+						});
+					});
+				});
 			}
 		});
 	}
@@ -75,15 +81,18 @@ window.onload = function() {
 	}
 
 	function deleteFile() {
-		if (codeBox.value.length === 0 && getCurrentFile().valueOf() === TEMP.valueOf()) return;
-		var sure = confirm("Are you sure you want to delete this script?");
-		if (sure) {
-			isSaved = true;
-			var file = getCurrentFile();
-			chrome.storage.local.remove(file);
-			populateFiles();
-			newFile();
-		}
+		getCurrentFile(function(file) {
+			if (codeBox.value.length === 0) return;
+			var sure = confirm("Are you sure you want to delete this script?");
+			if (sure) {
+				isSaved = true;
+				chrome.storage.local.remove(file, function() {
+					populateFiles(function() {
+						newFile();
+					});
+				});
+			}
+		});
 	}
 
 	function run() {
@@ -105,7 +114,7 @@ window.onload = function() {
 		filePicker.add(option);
 	}
 
-	function populateFiles() {
+	function populateFiles(callback) {
 		clearFiles();
 		chrome.storage.local.get(null, function(items) {
 			for (var key in items) {
@@ -114,38 +123,42 @@ window.onload = function() {
 				}
 			}
 		});
+		callback();
 	}
 
 	function closeFile() {
 		return isSaved || confirm("Delete unsaved changes?");
 	}
 
-	function getCurrentFile() {
+	function getCurrentFile(callback) {
 		var currentFile;
 		chrome.storage.local.get(CURRENT, function(items) {
 			currentFile = items[CURRENT];
 		});
 		if (currentFile === undefined) {
 			currentFile = TEMP;
-			setCurrentFile(currentFile);
+			setCurrentFile(currentFile, function() {});
 		}
-		return currentFile;
+		callback(currentFile);
 	}
 
-	function setCurrentFile(file) {
+	function setCurrentFile(file, callback) {
 		var obj = {};
 		obj[CURRENT] = file;
-		chrome.storage.local.set(obj);
-		fileLabel.innerHTML = file;
+		chrome.storage.local.set(obj, function() {
+			fileLabel.innerHTML = file;
+		});
+		callback();
 	}
 
 	function openFile(file) {
 		if (closeFile()) {
-			setCurrentFile(file);
-			chrome.storage.local.get(file, function(items) {
-				codeBox.value = items[file];
+			setCurrentFile(file, function() {
+				chrome.storage.local.get(file, function(items) {
+					codeBox.value = items[file];
+					isSaved = true;
+				});
 			});
-			isSaved = true;
 		}
 	}
 

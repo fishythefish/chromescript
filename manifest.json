@@ -26,7 +26,7 @@
 		{
 			"matches": ["<all_urls>"],
 			"css": [
-				"CodeMirror/lib/codemirror.css",
+				"CodeMirror/lib/codemirror.css"
 			],
 			"js": [
 				"CodeMirror/mode/javascript/javascript.js",
@@ -134,8 +134,6 @@
                 "CodeMirror/mode/ntriples/ntriples.js",
                 "CodeMirror/mode/octave/octave.js",
                 "CodeMirror/mode/pascal/pascal.js",
-                "CodeMirror/mode/pegjs",
-                "CodeMirror/mode/pegjs/index.html",
                 "CodeMirror/mode/pegjs/pegjs.js",
                 "CodeMirror/mode/perl/perl.js",
                 "CodeMirror/mode/php/php.js",
