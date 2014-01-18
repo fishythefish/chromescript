@@ -53,7 +53,7 @@ window.onload = function() {
 			if (file.valueOf() === TEMP.valueOf()) {
 				var item = {};
 				item[TEMP] = codeBox.getValue();
-				chome.storage.local.set(item, function() {
+				chrome.storage.local.set(item, function() {
 					isSaved = true;
 				});
 			}
