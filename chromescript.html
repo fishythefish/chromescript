@@ -22,7 +22,6 @@
         <div id="editor">
             <div id="loader">
                 <select id="FilePicker" size="10">
-                    <option value="unnamed">unnamed</option>
                 </select>
             </div>
             <div id="textbox">
@@ -33,7 +32,7 @@
                             CodeMirror.showHint(cm, CodeMirror.hint.javascript);
                         };
                         window.editor = CodeMirror.fromTextArea(scriptingspace, {
-                            mode: "javascript",
+                            mode: "text/javascript",
                             lineNumbers: true,
                             lineWrapping: true,
                         });
