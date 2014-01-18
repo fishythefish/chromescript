@@ -7,7 +7,6 @@
         <script src="CodeMirror/lib/codemirror.js"></script>
         <script src="CodeMirror/mode/javascript/javascript.js"></script>
         <link href="CodeMirror/lib/codemirror.css" rel="stylesheet" type="text/css" />
-        <link href="CodeMirror/theme/default.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
         <div id="icons">
@@ -26,18 +25,6 @@
             </div>
             <div id="textbox">
                 <textarea id="scriptingspace" cols="65" rows="10"  placeholder="Enter code here"></textarea>
-                <script type="text/javascript" language="javascript">
-                    window.onload = function() {
-                        CodeMirror.commands.autocomplete = function(cm) {
-                            CodeMirror.showHint(cm, CodeMirror.hint.javascript);
-                        };
-                        window.editor = CodeMirror.fromTextArea(scriptingspace, {
-                            mode: "text/javascript",
-                            lineNumbers: true,
-                            lineWrapping: true,
-                        });
-                    };
-                </script>
             </div>
         </div>
     </body>
