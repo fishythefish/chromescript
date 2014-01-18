@@ -136,7 +136,7 @@ window.onload = function() {
 		var obj = {};
 		obj[CURRENT] = file;
 		chrome.storage.local.set(obj);
-		fileLabel.innerHTML=file;
+		fileLabel.innerHTML = file;
 	}
 
 	function openFile(file) {
