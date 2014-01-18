@@ -2,16 +2,17 @@ body {
 	min-width: 357px;
 	overflow-x: hidden;
 }
-#loader {
-    width: 300px;
+#editor{
+    height: 400px;
+}
+#loader{
     display: inline;
     position: relative;
     float: left;
 }
 
-#textbox {
+#textbox{
     display: inline;
     float: left;
-    display: inline;
     position: relative;
 }
