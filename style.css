@@ -29,6 +29,7 @@ select {
 #textbox{
     display: inline-block;
     position: relative;
-    float: right;
+    float: left;
+    height: 175px;
 }
 
