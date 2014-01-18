@@ -7,7 +7,6 @@ window.onload = function() {
 
 	setCurrentFile(TEMP).then(function() {});
 	chrome.storage.local.get(TEMP, function(items) {
-		alert(items[TEMP]);
 		codeBox.setValue(items[TEMP]);
 	});
 	var isSaved = true;
