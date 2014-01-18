@@ -30,15 +30,13 @@ window.onload = function() {
 	var newButton = document.getElementById("new");
 	var saveButton = document.getElementById("save");
 	var saveAsButton = document.getElementById("saveas");
-	var importButton = document.getElementById("import");
-	var deleteButton = document.getElementById("delete");
+	var openButton = document.getElementById("open");
 	var runButton = document.getElementById("run");
 
 	newButton.addEventListener('click', newFile);
 	saveButton.addEventListener('click', save);
 	saveAsButton.addEventListener('click', saveAs);
-	importButton.addEventListener('click', importFile);
-	deleteButton.addEventListener('click', deleteFile);
+	openButton.addEventListener('click', open);
 	runButton.addEventListener('click', run);
 
 	function textChanged() {
