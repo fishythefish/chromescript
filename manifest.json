@@ -19,16 +19,18 @@
 	},
 	"author": "Mayank Patke",
 	"background": {
-
+		"persistent": false,
+		"scripts": [
+			"chromescript.js"
+		]
 	},
 	"incognito": "split",
 	"offline_enabled": true,
 
 	"permissions": [
-		"<all_urls>",
+		"activeTab",
 		"contentSettings",
 		"contextMenus",
-		"cookies",
-		"tabs"
+		"cookies"
 	]
 }
