@@ -11,10 +11,11 @@ body {
 
 #run{
     float: right;
+    margin-right: 0px;
 }
 
 #loader{
-    width: 150px;
+    width: 193px;
     height: 175px;
     display: inline-block;
     position: relative;
@@ -22,14 +23,14 @@ body {
 }
 
 select {
-    width: 150px;
+    width: 193px;
     height: 172px;
 }
 
 #textbox{
     display: inline-block;
     position: relative;
-    float: left;
+    float: right;
     height: 175px;
 }
 
