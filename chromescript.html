@@ -7,15 +7,20 @@
     </head>
     <body>
         <div id="icons">
-            <button class='files' id="save"><img src='icon/floppy-discv2.png' /></button>
-            <button class='files' id="load"><img src='icon/folderv2.png' /></button>
+            <button class='files' id="save"><img src='icon/floppy-discv2.png' title='Save'/></button>
+            <button class='files' id="load"><img src='icon/folderv2.png' title='Load'/></button>
+            <button class='files' id="saveas"><img src='icon/floppy-discv2.png' title='Save As...'/></button>
+            <button class='files' id="run"><img src='icon/folderv2.png' title='Run'/></button>
         </div>
-        <div id="textbox">
-            <textarea name="scriptingspace" cols="80" rows="10" placeholder="Enter code here"></textarea>
-        </div>
-        <div id="options">
-            <button id="submit" type="button" value="Run">Run</button>
-            <button id="cancel" type="button" value="Cancel">Cancel</button>
+        <div id="editor">
+            <div id="loader">
+                <select name="FilePicker" size="10">
+                    <option value="unnamed">unnamed</option>
+                </select>
+            </div>
+            <div id="textbox">
+                <textarea name="scriptingspace" cols="80" rows="10"  placeholder="Enter code here"></textarea>
+            </div>
         </div>
     </body>
 </html>
