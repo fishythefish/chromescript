@@ -2,6 +2,13 @@ body {
     width: 695px;
 	overflow-x: hidden;
 }
+
+#filename{
+    font-family: "Sans";
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #run{
     float: right;
 }
@@ -24,3 +31,4 @@ select {
     position: relative;
     float: right;
 }
+

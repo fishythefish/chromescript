@@ -4,6 +4,15 @@
         <title>ChromeScript</title>
         <link rel="stylesheet" type="text/css" href="style.css">
         <script src="chromescript.js"></script>
+        <script language=javascfipt" type="text/javascript" src="EditArea/edit_area/edit_area_full.js"></script>
+        <script language="javascript" type="text/javascript">
+            editAreaLoader.init({
+                    id : "scriptingspace",
+                    syntax: "js",
+                    start_highlight: true,
+                    allow_toggle: false
+            });
+        </script>
     </head>
     <body>
         <div id="icons">
@@ -22,7 +31,9 @@
                 </select>
             </div>
             <div id="textbox">
+                <form method="post">
                 <textarea id="scriptingspace" cols="65" rows="10"  placeholder="Enter code here"></textarea>
+            </form>
             </div>
         </div>
     </body>
