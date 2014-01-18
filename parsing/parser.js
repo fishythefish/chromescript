@@ -1,6 +1,6 @@
 dictionary = [
-	[
-	/go\(\"([^\"]+)\"\)/g, 'location.href = "http://$1"']
+	[/go\(\"([^\"]+)\"\)/g, 'location.href = "http://$1"'],
+	[/go\(\'([^\']+)\'\)/g, "location.href = 'http://$1'"]
 ];
 
 function parseCode(code) {
