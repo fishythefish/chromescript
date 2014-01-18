@@ -22,12 +22,6 @@
 		"default_popup": "chromescript.html"
 	},
 
-	"background": {
-		"persistent": false,
-		"scripts": [
-			"chromescript.js"
-		]
-	},
 	"incognito": "split",
 	"offline_enabled": true,
 
