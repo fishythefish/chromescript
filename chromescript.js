@@ -2,6 +2,7 @@ var CURRENT = "currentFile";
 var TEMP = "New Script";
 var SUFFIX = ".cjs";
 var SUFFIX_REGEX = /\.cjs$/;
+var editor;
 
 window.onload = function() {
 
@@ -202,3 +203,7 @@ var contextItem = chrome.contextMenus.create({
 	"type" : "normal",
 	"contexts" : ["all"]
 	});
+
+function setKeyBindings(file){
+    editor.setOption("keyMap", "vim");
+}
