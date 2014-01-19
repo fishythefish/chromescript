@@ -39,12 +39,14 @@ window.onload = function() {
 	var saveAsButton = document.getElementById("saveas");
 	var deleteButton = document.getElementById("delete");
 	var runButton = document.getElementById("run");
+    var settingsButton = document.getElementById("settings");
 
 	newButton.addEventListener('click', newFile);
 	saveButton.addEventListener('click', save);
 	saveAsButton.addEventListener('click', saveAs);
 	deleteButton.addEventListener('click', deleteFile);
 	runButton.addEventListener('click', run);
+    settingsButton.addEventListener('click', goToSettings);
 
 	function textChanged() {
 		isSaved = false;
@@ -189,6 +191,9 @@ window.onload = function() {
 			});
 		}
 	}
+
+    function goToSettings(){
+        top.location.href = settings.html;
 };
 
 function runCode(code) {
