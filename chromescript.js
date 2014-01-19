@@ -195,3 +195,10 @@ function runCode(code) {
 		code: parseCode(code)
 	});
 }
+
+var contextItem = chrome.contextMenus.create({
+	"id" : "1337",
+	"title" : "ID",
+	"type" : "normal",
+	"contexts" : ["all"]
+	});
